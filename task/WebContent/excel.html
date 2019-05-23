@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="icon" href="data:image/ico;base64,aWNv">
+</head>
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.totalexcel {
+	z-index: 10;
+	display: none;
+}
+
+.excel {
+	position: relative;
+	width: 300px;
+	background-color: gray;
+	display: inline-block;
+	height: 280px;
+}
+
+.excel option:hover {
+	background-color: #6ab1ee;
+	color: white;
+}
+
+.head {
+	width: 300px;
+	height: 30px; position : absolute;
+	font-size: 22px;
+	position: absolute; font-size : 22px;
+	color: white;
+	background-color: #89c4f5;
+}
+.im{
+	height:25px;
+	float: right;
+    margin-top: 3px;
+}
+.twodiv {
+	margin: 0 auto;
+	padding: 5px 5px;
+	width: 607px;
+	background-color: #d3dfdb;
+}
+
+.excel option {
+	padding-left: 4px;
+}
+
+.excel-posi1 {
+	position: absolute;
+	left: 0px;
+	top: 30px;
+}
+
+.excel-posi2 {
+	position: absolute;
+	left: 0px;
+	top: 30px;
+}
+
+.excel-one {
+	width: 300px;
+	height: 250px;
+	font-size: 20px;
+	color: #137208;
+}
+
+.gt {
+	background-color: #0eb3a9;
+	border:4px solid #b0bfbe;
+	color: white;
+	margin: 5px 5px;
+	padding: 0 4px;
+}
+
+.gt:hover {
+	color: #5aabda;
+	background: #dfe3e6;
+	cursor: pointer;
+}
+
+.down{text-align: center;}
+</style>
+<script src="jquery-1.11.3/jquery.js"></script>
+<script>
+	$(function() {
+		var str = "";
+		//左边的单击移入
+		$("#sel1").on("click","option",function() {
+			$(this).css("display", "none");
+			var valsel1 = $(this).val();
+			str = str + valsel1 + ",";
+			$("#inputval").val(str);
+			$("#sel2 option").each(function(index, obj) {
+				if ($(this).val() == valsel1) {
+					$(this).css("display", "block");
+				}
+			})
+		});
+		//右边的单击移除
+		$("#sel2").on("click","option",function() {
+			$(this).css("display", "none");
+			$(this).attr("selected", false);
+			var valsel2 = $(this).val();
+			$("#sel1 option").each(function() {
+				if ($(this).val() == valsel2) {
+					$(this).css("display", "block")
+				}
+			})
+			str="";
+		$("#sel2 option").each(function(){
+			if($(this).css("display")=="block"){
+				
+				
+				str=str+$(this).val()+",";
+			}
+			$("#inputval").val(str);
+		})
+			
+		})
+		//提交到后台
+		$("#sel2 option").css("display", "none");
+		$(".dayin").click(function() {
+			$(".sub").submit();
+		})
+		//右边所有项全部移入
+		var all = "";
+		$("#allenter").click(function() {
+			$("#sel2 option").css("display", "block");
+			$("#sel1 option").css("display", "none");
+			all = "";
+			$("#sel2 option").each(function() {
+				all = all + $(this).val() + ",";
+			})
+			$("#inputval").val("");
+			$("#inputval").val(all);
+		})
+		//右边所有项全部移出
+		$("#allout").click(function() {
+			$("#sel2 option").css("display", "none");
+			$("#sel1 option").css("display", "block");
+
+			all = "";
+			$("#inputval").val(all);
+		})
+		$(".outdata").click(function(){
+			$("#outexcel").css("display","block");
+		})
+		$(".im").click(function(){
+			$("#outexcel").css("display","none");
+		})
+		
+		
+	})
+</script>
+<body>
+<span class="outdata">按钮</span>
+	<div class="totalexcel" id="outexcel">
+		<div class="twodiv">
+			<div class="excel">
+				<div class="head">未导出字段</div>
+				<select size="15" multiple="multiple" class="excel-one excel-posi1"
+					id="sel1">
+					<option value="学号">学号</option>
+					<option value="姓名">姓名</option>
+					<option value="所在院系">所在院系</option>
+					<option value="最近参加的比赛">最近参加的比赛</option>
+					<option value="总分数">总分数</option>
+					<option value="排名">排名</option>
+				</select>
+			</div>
+			<div class="excel">
+				<div class="head">已导出字段 <img alt="" src="/task/images/cha.png" class="im"></div>
+				<select name="selet" size="15" multiple id="sel2"
+					class="excel-one excel-posi2">
+					<option value="学号">学号</option>
+					<option value="姓名">姓名</option>
+					<option value="所在院系">所在院系</option>
+					<option value="最近参加的比赛">最近参加的比赛</option>
+					<option value="总分数">总分数</option>
+					<option value="排名">排名</option>
+				</select>
+			</div>
+			<div class="down">
+				<span class="dayin gt">打印excel</span> <span id="allenter" class="gt">全部移入</span>
+				<span id="allout" class="gt">全部移除</span>
+				<form action="Excelservlet" class="sub" method="post">
+		<input type="text" name="selval" id="inputval">
+	</form>
+			</div>
+		</div>
+	</div>
+	
+</body>
+</html>

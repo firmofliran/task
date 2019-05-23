@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>高校管理部门</title>
+</head>
+  <style type="text/css">
+  *{margin: 0;
+  	padding: 0;
+  	text-decoration: none;	
+  	}
+  .top{
+  	width: 100%;
+  	height: 22px;
+  	background-color: blue; 		
+  }
+  
+  .one-1{color:white;
+  		text-decoration: none;
+  		float: left;
+  }
+  a:hover{color:orange; 		
+  }
+  
+  .two-2{
+  		float: right;
+  		text-decoration: none;
+  		color: white;
+  }
+  
+  .center{
+  	width:100% ;
+  	height: 100;
+  
+  }
+  .center-i{
+  	width: 100%;
+  	height: 150px
+  
+  }
+  .bumen{text-align: center;
+  		font-size: 44px;
+  }
+  .foot-1{width: 200px;
+  		  height: 220px;
+  		  background:  #dddddd;
+  		  position:absolute;
+  		  left:100px;
+  		  top:330px;
+  		  text-align: center;
+  		  
+  }
+  .foot-2{width: 200px;
+  		  height: 220px;
+  		  background:  #dddddd;
+  		  position:absolute;
+  		  left:500px;
+  		  top:330px;
+  		  text-align: center;
+  		  
+  }
+  .foot-3{width: 200px;
+  		  height: 220px;
+  		  background: #dddddd;
+  		  position:absolute;
+  		  left:1000px;
+  		  top:330px;
+  		  text-align: center;
+  }
+  .choose a{color:#339ac8;}
+  .pm{    width: 200px;
+  		  height: 100px;
+  		  position: absolute;
+  		  left: 100px;
+  		  
+  }
+  .data{ width: 200px;
+  		  height: 100px;
+  		  position: absolute;
+  		  left: 500px;
+  		  
+  		  }
+  		  
+  .fabu{ width: 200px;
+  		  height: 100px;
+  		  position: absolute;
+  		  left: 1000px;}
+	
+  
+  </style>
+  <script src="jquery-1.11.3/jquery.js"></script>
+  <script >
+  $(function(){
+  	$(".choose a").hover(function(){
+  		$(this).css("color","#1666d5");
+  	},function(){
+  		$(this).css("color","")})
+  		
+  })
+  </script>
+<body>
+	<div class="top">
+	<span class="one"><a href="#" class="one-1">设为首页加入收藏</a></span>
+	<span class="two"><a href="#"  class="two-2">高校</a></span>
+	</div>
+	
+	<div class="center"><img src="images/e.jpg" class="center-i"/></div>
+	<div class="bumen"><img src="images/people.png" alt="tupian" class="tu">高校管理部门</div>
+	
+	<div class="choose">
+	<div class="botton1">
+		<div><img src="images/b.jpg" class="pm"></div>
+		<div class="foot-1">
+		 	<h1>查看排名</h1><br>
+		    <h3><a href="SplitPage">学生排名</a></h3><br><br><!--分页路径则是splitpage-->
+		    <h3><a href="#">院系排名</a></h3>
+		</div>
+	</div>
+		
+	<div class="botton2">
+		<div><img src="images/c.jpg" class="data"></div>
+		<div class="foot-2">
+		 	<h1>数据分析</h1><br>
+		     <h3><a href="SuperCheckimage">获奖数量</a></h3><br>
+		     <h3><a href="#">参赛人数</a></h3><br>
+		     <h3><a href="#">竞赛类别</a></h3>
+		</div>
+	</div>	
+	
+	<div class="botton3">
+		<div><img src="images/d.jpg" class="fabu"></div>
+		<div class="foot-3">
+		 	<h1>发布信息</h1><br>
+		 	<span>${requestScope.flag}</span>
+		 	<h3><a href="${pageContext.request.contextPath}/superjsp/addinfo.jsp?sign=js" target="_blank">学科竞赛</a></h3><br><br>
+		    <h3><a href="${pageContext.request.contextPath}/superjsp/addinfo.jsp?sign=ky" target="_blank">科研立项</a></h3><br>
+		</div>
+	</div>
+	</div>	
+</body>
+</html>

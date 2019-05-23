@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>上传专利</title>
+</head>
+
+<style type="text/css">
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.left {
+	border-radius:10px;
+	width: 200px;
+	height: 600px;
+	background-color: #555c65;
+	margin-top: 50px;
+	margin-left: 50px;
+	padding-top: 50px;
+	line-height: 50px;
+	color: #f2f4f4;
+}
+
+.left a {
+	color: white;
+	text-decoration: none;
+}
+
+.left li {
+	list-style: none;
+	padding-left: 50px;
+	
+}
+
+.xg {
+	width: 70px;
+	height: 6px;
+	background-color: #0fbd8e;
+}
+
+.right {
+	position: absolute;
+	left: 310px;
+	top: 50px;
+	width: 70%;
+	height: 600px;
+	
+	margin-right: 140px;
+	background: linear-gradient(to right,#ced9df,#f5f6f6);
+	display: block;
+}
+
+.uploadhead {
+	font: 30px "宋体";
+	text-align: center;
+}
+
+.content-lw {
+	line-height: 40px;
+}
+
+.current-gj {
+	position: absolute;
+	left: 310px;
+	top: 50px;
+	width: 78%;
+	height: 600px;
+	background-color: #bcd7da;
+	display: none;
+}
+
+.current-table {
+	margin-top: 40px;
+	line-height: 40px;
+	text-align: center;
+}
+.current-ls {
+	position: absolute;
+	left: 310px;
+	top: 50px;
+	width: 78%;
+	height: 600px;
+	background-color: #bcd7da;
+	display: none;
+}
+.a{
+	border:2px solid #9dabbd;
+}
+.current-table-ls {
+	margin-top: 40px;
+	line-height: 35px;
+	width:100%;
+	text-align: center;
+}
+.sub {
+	width: 80px;
+	display: block;
+	font: 20px "宋体";
+	margin: 0 auto;
+}
+</style>
+<script src="../jquery-1.11.3/jquery.js"></script>
+<script>
+	$(function() {
+		//设置上传稿件div样式
+		$(".content-lw input").attr("size", "100px").css("height", "30px");
+		$(".content-lw textarea").css("width", "500px");
+		$(".content-lw td:even").css("backgroundColor", "#39b6ee");
+
+		//设置当前稿件div样式
+		$(".current-gj tr:first").css({
+			"backgroundColor" : "#1baff1",
+			"fontSize" : "20px"
+		});
+		$(".left li").hover(function() {
+			$(this).css({
+				backgroundColor : "#8a8a8a",
+				fontSize : "20px"
+			})
+		}, function() {
+			$(this).css({
+				backgroundColor : "",
+				fontSize : "",
+			})
+		});
+		//历史稿件样式
+		$(".current-table-ls tr:first").css("backgroundColor","#1baff1");
+		//左侧菜单效果
+		$("<div class='xg'></div>").appendTo($(".left li:eq(1)"));
+		//点击回到首页
+		$(".first").click(function(){
+			window.location.href="../shou.jsp";
+		})
+		$(".left .first").siblings().click(function() {
+
+			$(".xg").remove();
+			$("<div class='xg'></div>").appendTo($(this));
+			var num = $(this).index() - 1;
+			$(".a").eq(num).css("display", "block");
+			$(".a").eq(num).siblings().css("display", "none");
+		});
+
+	})
+</script>
+<body>
+
+	<div class="left">
+		<ul>
+			<li class="first">返回首页></li>
+			<li>上传专利</li>
+			<li>当前专利</li>
+			<li>历史专利</li>
+		</ul>
+	</div>
+	<div>
+		<!-- 上传论文 -->
+		<div class="right a">
+		<div class="uploadhead">上传专利区</div><hr>
+		<span>带*号的为必填项</span>
+			<div class="content-lw">
+				<form>
+					<table>
+						<tr>
+							<td>专利标题*</td>
+							<td><input type="text" name="title"></td>
+						</tr>
+						<tr>
+							<td>专利编号*</td>
+							<td><input type="text" name="patentid"></td>
+						</tr>
+						<tr>
+							<td>关键字</td>
+							<td><input type="text" name="keyword"></td>
+						</tr>
+						<tr>
+							<td>专利简述*</td>
+							<td><textarea lang="100px" rows="6" name="summary"></textarea></td>
+						<tr>
+							<td>第一作者*</td>
+							<td><input type="text" name="author"></td>
+						</tr>
+						<tr>
+							<td>专利级别*</td>
+							<td><input type="text" name="grade"></td>
+						</tr>
+						<tr>
+							<td>银行卡号*</td>
+							<td><input type="text" name="bankcard"></td>
+						</tr>
+						<tr>
+							<td>联系电话</td>
+							<td><input type="text" name="telephone"></td>
+						</tr>
+						<tr>
+							<td>上传专利*</td>
+							<td><input type="file" name="patentimg"></td>
+						</tr>
+					</table>
+					<input type="submit"  value="提交" class="sub">
+				</form>
+			</div>
+		</div>
+
+		<!-- 当前稿件 -->
+
+		<div class="current-gj a">
+			<div class="uploadhead">当前稿件</div><hr>
+			<table class="current-table" border="1" cellspacing="0">
+				<tr>
+					<td>文章编号</td>
+					<td>文章标题</td>
+					<td>第一作者</td>
+					<td>所属学院</td>
+					<td>论文级别</td>
+					<td>银行卡号</td>
+					<td>电子刊物下载</td>
+					<td>审核状态</td>
+					<td>操作</td>
+				</tr>
+				<tr>
+					<td>432532523</td>
+					<td>基于web的高校创新积分排名管理系统的设计与开发</td>
+					<td>张三</td>
+					<td>数学与大数据</td>
+					<td>A</td>
+					<td>5465654646654</td>
+					<td>下载</td>
+					<td>通过</td>
+					<td>查看/转为历史记录</td>
+				</tr>
+				<tr>
+					<td>432532523</td>
+					<td>基于web的高校创新积分排名管理系统的设计与开发</td>
+					<td>张三</td>
+					<td>数学与大数据</td>
+					<td>B</td>
+					<td>5465654646654</td>
+					<td>下载</td>
+					<td>通过</td>
+					<td>查看/转为历史记录</td>
+				</tr>
+			</table>
+		</div>
+		<!-- 历史稿件 -->
+		<div class="current-ls a">
+			<div class="uploadhead">历史稿件</div><hr>
+			<table class="current-table-ls" border="1">
+				<tr>
+					<td>文章编号</td>
+					<td>文章标题</td>
+					<td>第一作者</td>
+					<td>所属学院</td>
+					<td>论文下载</td>
+					<td>奖励(已发放/未发放)</td>
+				</tr>
+				<tr>
+					<td>432532523</td>
+					<td>基于web的高校创新积分排名管理系统的设计与开发</td>
+					<td>张三</td>
+					<td>数学与大数据</td>
+					<td>下载</td>
+					<td>已发放</td>
+				</tr>
+				<tr>
+					<td>432532523</td>
+					<td>基于web的高校创新积分排名管理系统的设计与开发</td>
+					<td>张三</td>
+					<td>数学与大数据</td>
+					<td>下载</td>
+					<td>已发放</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,30 @@
+.login {
+    background: rgba(0,0,0,0.35);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 2017;
+}
+.login .main {
+    box-sizing: border-box;
+    /**
+    width: 430px;
+    height: 585px;
+    */
+    width: 356px;
+    height: 446px;
+    background: #fff;
+    position: fixed;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    overflow: hidden;
+}
